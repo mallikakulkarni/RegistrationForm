@@ -1,0 +1,232 @@
+<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <style>
+        .input_field {
+            font-family: "Calibri", serif;
+            font-style: normal;
+            padding: 10px;
+            width: 20%;
+        }
+
+        .text_input {
+            width: 25%;
+        }
+
+        p {
+            font-family: "Calibri", serif;
+            font-style: normal;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-right: 10px;
+        }
+
+        header {
+            border-bottom-style: solid;
+            border-bottom-width: thin;
+        }
+
+        button {
+            background-color: #0033ff;
+            color: white;
+            margin: 2em;
+            width: 5em;
+        }
+
+
+    </style>
+    <script>
+        window.onload = function() {
+            document.getElementById('registrationform').reset();
+        }
+    </script>
+</head>
+<body>
+    <div class="container" style="display: flex; height: 100%">
+        <div id="maindiv" style="width: 100%">
+            <div id="header">
+                <header style="clear: left">
+                    <h3>Registration</h3>
+                </header>
+            </div>
+            <div style="width: 100%">
+                <form role="form" id="registrationform">
+                    <table style="width: 100%">
+                        <tr>
+                            <td class="input_field"><label for="userid"> User ID </label></td>
+                            <td class="text_input"><input type="text" id="userid" name="userid" placeholder="UserID" required="true"></td>
+                        </tr>
+                        <tr>
+                            <td class="input_field"><label for="password"> Password </label></td>
+                            <td class="text_input"><input type="password" id="password" placeholder="Password" name="password"
+                                   required="true" onfocus="vanishErrorText()" onkeyup="savepassword()"></td>
+                            <td>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" id="passworddata"
+                                         aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="form-group">
+                            <td class="input_field"><label for="verifypassword"> Verify Password </label></td>
+                            <td class="text_input"><input type="password" id="verifypassword"
+                                   onblur="comparepasswords('password', 'verifypassword', 'passworderror', 'Passwords')"
+                                   onfocus="vanishErrorText('passworderror')" required="true" placeholder="Verify Password"></td>
+                        </tr>
+                        <tr>
+                            <td class="input_field"></td>
+                            <td id="passworderror" class="text_input"></td>
+                        </tr>
+                        <tr class="form-group">
+                            <td class="input_field"><label for="email"> Email </label></td>
+                            <td class="text_input"><input type="email" id="email"
+                                   onfocus="vanishErrorText()" required="true" placeholder="Email" name="email"></td>
+                        </tr>
+                        <tr class="form-group">
+                            <td class="input_field"><label for="verifyemail"> Verify Email </label></td>
+                            <td class="text_input"><input type="email" id="verifyemail"
+                                   onblur="comparepasswords('email', 'verifyemail', 'emailerror', 'Emails')"
+                                   onfocus="vanishErrorText('emailerror')"required="true" placeholder="Verify Email"></td>
+                        </tr>
+                        <tr id="emailerror"></tr>
+                        <tr>
+                            <td class="input_field"><label> Security Question 1 </label></td>
+                            <td class="text_input" name="seqques1">
+                                <input list="secques1">
+                                <datalist id="secques1">
+                                <option value="Sum of 2+3">
+                                <option value="Sum of 100+200">
+                                <option value="23*100=">
+                                <option value="Capital of India">
+                                <option value="Capital of USA">
+                            </datalist></td>
+                        </tr>
+                        <tr>
+                            <td class="input_field"><label for="secans1"> Security Answer 1 </label></td>
+                            <td class="text_input"><input type="text" id="secans1" required="true"></td>
+                        </tr>
+                        <tr>
+                            <td class="input_field" name="seqques2"><label> Security Question 2 </label></td>
+                            <td class="text_input">
+                                <input list="secques2">
+                                <datalist id="secques2">
+                                    <option value="Sum of 2+3">
+                                    <option value="Sum of 100+200">
+                                    <option value="23*100=">
+                                    <option value="Capital of India">
+                                    <option value="Capital of USA">
+                                </datalist>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="input_field"><label for="secans2"> Security Answer 2 </label></td>
+                            <td class="text_input"><input type="text" id="secans2" required="true"></td>
+                        </tr>
+                        <tr>
+                            <td class="input_field"><label for="mobile"> Mobile </label></td>
+                            <td class="text_input"><input type="text" id="mobile"></td>
+                        </tr>
+                        <tr>
+                            <td class="input_field"><label for="address"> Address </label></td>
+                            <td class="text_input"><textarea id="address" style="border:solid 1px lightgray; width: 100%" rows="4"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td class="input_field"></td>
+                            <td class="text_input"><p>Any other areas you may be interested in</p></td>
+                        </tr>
+                        <tr>
+                            <td class="input_field"><label for="interests"></label></td>
+                            <td class="text_input">
+                                <textarea id="interests" style="border:solid 1px darkblue; width: 100%" rows="4"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="input_field"></td>
+                            <td><button class="btn" type="submit" onclick="submitform()">Submit</button>
+                            <button class="btn" type="reset" onclick="reset()">Reset</button></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+    <script>
+        function comparepasswords(original, verify, errormsg, field) {
+            var origpwd = document.getElementById(original).value;
+            var verpwd = document.getElementById(verify).value;
+            if (origpwd !== verpwd) {
+                document.getElementById(original).value = null;
+                document.getElementById(verify).value = null;
+                document.getElementById(errormsg).innerHTML = field+ ' do not match';
+                document.getElementById('passworddata').style.visibility = 'hidden';
+            }
+        }
+
+        function vanishErrorText(divid) {
+            if (document.getElementById(divid).innerHTML !== "") {
+                document.getElementById(divid).innerHTML = "";
+            }
+        }
+
+        function savepassword() {
+            var temppassword = document.getElementById('password').value;
+            var val = temppassword.length * 100 / 20;
+            document.getElementById('passworddata').style.width = val+"%";
+            document.getElementById('passworddata').style.visibility = 'visible';
+            if (temppassword.length < 7) {
+                document.getElementById('passworddata').classList.add("progress-bar-danger");
+            } else if (temppassword.length > 20) {
+                document.getElementById('passworddata').classList.add("progress-bar-danger");
+            } else {
+                var specialchars = ['!','#','$','%'];
+                var specials = 0;
+                var numbers = 0;
+                var characters = 0;
+                var minspecials = 1;
+                var minnumbers = 1;
+                var minchars = 4;
+                var valid = false;
+
+
+                for (j = 0; j < temppassword.length; j++) {
+                    var char = temppassword[j];
+                    if (char >= '0' && char <= '9') {
+                        numbers++;
+                    } else if (char.toLowerCase() >= 'a' && char.toLowerCase() <= 'z') {
+                        characters++;
+                    } else {
+                        valid = false;
+                        for (i = 0; i < specialchars.length; i++) {
+                            if (char === specialchars[i]) {
+                                valid = true;
+                                specials++;
+                            }
+                        }
+                        if (!valid) {
+                            document.getElementById('passworddata').classList.add("progress-bar-danger");
+                        }
+                    }
+                }
+                var condValue = (specials - minspecials >= 1 && characters - minchars >= 1 && numbers - minnumbers >= 1);
+                var dangerCond = (temppassword.length < 7 || temppassword.length > 20 || !valid);
+
+                document.getElementById('passworddata').classList.toggle("progress-bar-danger", dangerCond);
+                document.getElementById('passworddata').classList.toggle("progress-bar-warning", !(condValue));
+                document.getElementById('passworddata').classList.toggle("progress-bar-success", (condValue));
+
+            }
+        }
+
+        function submitform() {
+            var itemsToSave = ["userid", "password", "email", "seqques1", "secans1", "seqques2", "seqans2", "mobile", "address", "interests"]; // TODO: complete this
+            for (i = 0; i < itemsToSave.length; i++) {
+                sessionStorage.setItem(itemsToSave[i], document.getElementById(itemsToSave[i]).value);
+            }
+        }
+    </script>
+</html>

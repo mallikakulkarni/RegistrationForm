@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: Cmpe281Project
+Implementation-Version: 1.0-SNAPSHOT
+Implementation-Vendor-Id: edu.sjsu
+Build-Jdk: 1.8.0_45
+Built-By: mallika
+Created-By: IntelliJ IDEA
+Main-Class: ${start-class}
+
